@@ -8,7 +8,7 @@ public class FriendList {
     public FriendList() {
         friendIds = new ArrayList<Integer>();
     }
-    public List<Integer> getFriendList() {
+    public List<Integer> getFriends() {
         return friendIds;
     }
     public void addFriend(Integer friendId) {

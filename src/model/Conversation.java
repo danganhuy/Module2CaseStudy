@@ -4,21 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Conversation {
+    private int id;
     private List<Message> message;
 
-    public Conversation() {
+    protected Conversation(int id) {
+        this.id = id;
         message = new ArrayList<Message>();
     }
 
-    public List<Message> getMessage() {
+    public int getId() {
+        return id;
+    }
+
+    protected List<Message> getMessage() {
         return message;
     }
 
-    public void addMessage(Message message) {
+    protected void addMessage(Message message) {
         this.message.add(message);
     }
 
-    public void deleteMessage(Message message) {
+    protected void deleteMessage(Message message) {
         message.setDeleted(true);
     }
+
+    public abstract void sendMessage(String message, Account account);
+    public abstract boolean userHere(int id);
 }

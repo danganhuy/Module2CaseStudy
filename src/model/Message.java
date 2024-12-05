@@ -18,10 +18,6 @@ public class Message {
         return userId;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     public String getMessage() {
         return message;
     }
@@ -40,5 +36,10 @@ public class Message {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    protected String printMessage(Account account) {
+        return account.getName() + "[" + sendDate.toString() + "]: " +
+                (deleted ? "Message deleted by user" : message);
     }
 }
