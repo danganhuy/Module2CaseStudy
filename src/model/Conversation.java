@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Conversation implements Serializable {
-    private int id;
+    private String id;
     private List<Message> message;
 
-    protected Conversation(int id) {
-        this.id = id;
+    protected Conversation() {
+        this.id = ConversationManager.getNewId();
         message = new ArrayList<Message>();
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -30,5 +30,5 @@ public abstract class Conversation implements Serializable {
     }
 
     public abstract void sendMessage(String message, Account account);
-    public abstract boolean userHere(int id);
+    public abstract boolean userHere(Account account);
 }

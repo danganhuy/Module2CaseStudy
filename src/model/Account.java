@@ -1,32 +1,24 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Account implements Serializable {
-    private int id;
-    private String name;
+    private String username;
     private String password;
     private FriendList friendList;
 
-    public Account(int id, String name, String password) {
-        this.id = id;
-        this.name = name;
+    public Account(String username, String password) {
+        this.username = username;
         this.password = password;
         FriendList friendList = new FriendList();
     }
 
-    public int getId() {
-        return id;
+    public String getUsername() {
+        return username;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -37,8 +29,12 @@ public class Account implements Serializable {
         this.password = password;
     }
 
+    public FriendList getFriendList() {
+        return friendList;
+    }
+
     @Override
     public String toString() {
-        return name;
+        return username;
     }
 }

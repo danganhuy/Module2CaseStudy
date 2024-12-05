@@ -26,4 +26,25 @@ public class AccountManager {
         }
         return instance.accounts;
     }
+
+    public static void createAccount(Account account) {
+        instance.accounts.add(account);
+    }
+
+    public static Account findUser(String username) {
+        for(Account account : instance.accounts) {
+            if(account.getUsername().equals(username)) {
+                return account;
+            }
+        }
+        return null;
+    }
+
+    public static boolean validateAccount(String username, String password) {
+        Account account = findUser(username);
+        if (account != null) {
+            return account.getPassword().equals(password);
+        }
+        return false;
+    }
 }

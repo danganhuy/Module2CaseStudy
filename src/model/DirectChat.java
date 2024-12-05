@@ -1,21 +1,21 @@
 package model;
 
 public class DirectChat extends Conversation{
-    private int[] userIds;
+    private final Account[] accounts;
 
-    public DirectChat(int conversationId, int user0, int user1) {
-        super(conversationId);
-        userIds = new int[] {user0, user1};
+    public DirectChat(int conversationId, Account user0, Account user1) {
+        super();
+        accounts = new Account[] {user0, user1};
     }
 
-    public int[] getUsers() {
-        return userIds;
+    public Account[] getUsers() {
+        return accounts;
     }
 
     @Override
     public void sendMessage(String message, Account account) {
         try {
-            Message m = new Message(account.getId(), message);
+            Message m = new Message(account, message);
             addMessage(m);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -23,7 +23,7 @@ public class DirectChat extends Conversation{
     }
 
     @Override
-    public boolean userHere(int id) {
-        return id == userIds[0] || id == userIds[1];
+    public boolean userHere(Account account) {
+        return account == accounts[0] || account == accounts[1];
     }
 }

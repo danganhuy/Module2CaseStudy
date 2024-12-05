@@ -3,19 +3,19 @@ package model;
 import java.time.LocalDateTime;
 
 public class Message {
-    private int userId;
+    private Account account;
     private String message;
     private final LocalDateTime sendDate;
     private boolean deleted;
 
-    public Message(int userId, String message) {
+    public Message(Account account, String message) {
         this.message = message;
-        this.userId = userId;
+        this.account = account;
         this.sendDate = LocalDateTime.now();
         deleted = false;
     }
-    public int getUserId() {
-        return userId;
+    public Account getUser() {
+        return account;
     }
 
     public String getMessage() {
@@ -39,7 +39,7 @@ public class Message {
     }
 
     protected String printMessage(Account account) {
-        return account.getName() + "[" + sendDate.toString() + "]: " +
+        return account.getUsername() + "[" + sendDate.toString() + "]: " +
                 (deleted ? "Message deleted by user" : message);
     }
 }
