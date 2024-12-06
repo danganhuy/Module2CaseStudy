@@ -11,6 +11,9 @@ public class FriendList {
     public List<Account> getFriends() {
         return friends;
     }
+    public void setFriends(List<Account> friends) {
+        this.friends = friends;
+    }
     public void addFriend(Account friend) {
         friends.add(friend);
     }

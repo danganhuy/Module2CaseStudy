@@ -1,6 +1,5 @@
 package view;
 
-import controller.LoginController;
 import controller.Validator;
 import model.Account;
 import model.AccountManager;
@@ -9,31 +8,23 @@ import model.FriendList;
 
 import java.util.Scanner;
 
-public class Login {
-    private final LoginController controller;
-
-    public Login() {
-        controller = new LoginController();
-    }
-
-    public void option() {
+public class Login extends View {
+    public static void mainMenu() {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("=== Sign in ===");
         System.out.println("1. Log into your account");
         System.out.println("2. Create new account");
-        System.out.println("0. Exit");
+        System.out.println("3. Exit");
 
         while (true) {
             System.out.print("Your choice: ");
             switch (sc.nextLine()) {
                 case "1":
                     login();
-                    return;
                 case "2":
                     register();
-                    return;
-                case "0":
+                case "3":
                     return;
                 default:
                     System.out.println("### Invalid option ###");
@@ -41,7 +32,7 @@ public class Login {
         }
     }
 
-    public void login() {
+    public static void login() {
         Scanner sc = new Scanner(System.in);
         String username;
         System.out.println("=== Login ===");
@@ -49,7 +40,7 @@ public class Login {
         System.out.print("Enter your username: ");
         username = sc.nextLine();
         if (username.equals("###")) {
-            option();
+            mainMenu();
         }
         System.out.print("Enter your password: ");
         String password = sc.nextLine();
@@ -63,7 +54,7 @@ public class Login {
         login();
     }
 
-    public void register() {
+    public static void register() {
         Scanner sc = new Scanner(System.in);
         String username;
         System.out.println("===== Register =====");
@@ -73,7 +64,7 @@ public class Login {
             System.out.print("Enter your username: ");
             username = sc.nextLine();
             if (username.equals("###")) {
-                option();
+                mainMenu();
             }
             if (!Validator.isUsernameValid(username)) {
                 System.out.println("### Invalid username! ###");
@@ -91,14 +82,12 @@ public class Login {
         AccountManager.createAccount(new Account(username, password, new FriendList()));
         FileHandler.saveAccounts();
         System.out.println("Account created successfully!");
-        option();
+        mainMenu();
     }
 
     public static void main(String[] args) {
-        Login login = new Login();
         FileHandler.createData();
         FileHandler.loadAccounts();
-        login.option();
-
+        Login.mainMenu();
     }
 }

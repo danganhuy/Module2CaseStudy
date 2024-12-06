@@ -2,7 +2,9 @@ package model;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FileHandler {
     private static final String ACCOUNT_FILE_PATH = "file\\data.csv";
@@ -41,6 +43,8 @@ public class FileHandler {
         BufferedReader reader = null;
         try {
             List<Account> accounts = new ArrayList<>();
+            List<String[]> friendListList = new ArrayList<>();
+            Map<String, Account> accountMap = new HashMap<>();
             reader = new BufferedReader(new FileReader(ACCOUNT_FILE_PATH));
             String line;
 
@@ -49,8 +53,26 @@ public class FileHandler {
                 String[] data = line.split(VALUE_SEPARATOR);
                 String username = data[0];
                 String password = data[1];
-                accounts.add(new Account(username, password));
+                if (data.length > 2) {
+                    friendListList.add(data[2].split(INDEX_SEPERATOR));
+                } else {
+                    friendListList.add(null);
+                }
+                Account temp = new Account(username, password);
+                accounts.add(temp);
+                accountMap.put(username, temp);
             }
+
+            for (int i = 0; i < accounts.size(); i++) {
+                if (friendListList.get(i) == null) continue;
+
+                List<Account> friends = new ArrayList<>();
+                for (String friend : friendListList.get(i)) {
+                    friends.add(accountMap.get(friend));
+                }
+                accounts.get(i).getFriendList().setFriends(friends);
+            }
+
             AccountManager.createInstance(accounts);
 
         } catch (Exception e) {
