@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FriendList {
-    private List<Integer> friendIds;
+    private List<Account> friends;
     public FriendList() {
-        friendIds = new ArrayList<Integer>();
+        friends = new ArrayList<>();
     }
-    public List<Integer> getFriends() {
-        return friendIds;
+    public List<Account> getFriends() {
+        return friends;
     }
-    public void addFriend(Integer friendId) {
-        friendIds.add(friendId);
+    public void addFriend(Account friend) {
+        friends.add(friend);
     }
-    public void removeFriend(Integer friendId) {
-        friendIds.remove(friendId);
+    public void removeFriend(Account friend) {
+        friends.remove(friend);
     }
 }

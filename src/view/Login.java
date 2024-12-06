@@ -1,13 +1,21 @@
 package view;
 
+import controller.LoginController;
+import controller.Validator;
 import model.Account;
 import model.AccountManager;
+import model.FileHandler;
+import model.FriendList;
 
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Login {
+    private final LoginController controller;
+
+    public Login() {
+        controller = new LoginController();
+    }
+
     public void option() {
         Scanner sc = new Scanner(System.in);
 
@@ -20,23 +28,29 @@ public class Login {
             System.out.print("Your choice: ");
             switch (sc.nextLine()) {
                 case "1":
-
+                    login();
                     return;
                 case "2":
-
+                    register();
                     return;
                 case "0":
-                    System.exit(0);
+                    return;
                 default:
-                    System.out.println("### Invalid, please try again ###");
+                    System.out.println("### Invalid option ###");
             }
         }
     }
 
     public void login() {
         Scanner sc = new Scanner(System.in);
+        String username;
+        System.out.println("=== Login ===");
+        System.out.println("Type ### to exit");
         System.out.print("Enter your username: ");
-        String username = sc.nextLine();
+        username = sc.nextLine();
+        if (username.equals("###")) {
+            option();
+        }
         System.out.print("Enter your password: ");
         String password = sc.nextLine();
 
@@ -44,47 +58,47 @@ public class Login {
             System.out.println("You have successfully logged in!");
         }
         else {
-            System.out.println("### Invalid username or password! ###");
-            System.out.println("Do you want try again?");
-            System.out.println("Y: Retry login");
-            System.out.println("N: Exit login");
-            while (true) {
-                System.out.print("Your choice: ");
-                switch (sc.nextLine()) {
-                    case "Y":
-                        login();
-                    case "N":
-                        option();
-                    default:
-                        System.out.println("### Invalid option! ###");
-                }
-            }
+            System.out.println("### Wrong username or password ###");
         }
+        login();
     }
 
     public void register() {
         Scanner sc = new Scanner(System.in);
-        Pattern pattern = Pattern.compile("^[a-zA-Z\\s]*$");
-        Matcher matcher;
         String username;
+        System.out.println("===== Register =====");
         while (true) {
+            System.out.println("Type ### to exit");
             System.out.println("Username should have no numbers or special characters!");
             System.out.print("Enter your username: ");
             username = sc.nextLine();
-            if (pattern.matcher(username).matches()) {
-                break;
+            if (username.equals("###")) {
+                option();
             }
-            else {
+            if (!Validator.isUsernameValid(username)) {
                 System.out.println("### Invalid username! ###");
+                continue;
             }
             if (AccountManager.findUser(username) != null) {
                 System.out.println("### Username already used! ###");
+                continue;
             }
+            break;
         }
         System.out.print("Enter your password: ");
         String password = sc.nextLine();
 
-        AccountManager.createAccount(new Account(username, password));
+        AccountManager.createAccount(new Account(username, password, new FriendList()));
+        FileHandler.saveAccounts();
+        System.out.println("Account created successfully!");
+        option();
+    }
+
+    public static void main(String[] args) {
+        Login login = new Login();
+        FileHandler.createData();
+        FileHandler.loadAccounts();
+        login.option();
 
     }
 }

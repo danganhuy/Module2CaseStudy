@@ -10,7 +10,13 @@ public class Account implements Serializable {
     public Account(String username, String password) {
         this.username = username;
         this.password = password;
-        FriendList friendList = new FriendList();
+        friendList = new FriendList();
+    }
+
+    public Account(String username, String password, FriendList friendList) {
+        this.username = username;
+        this.password = password;
+        this.friendList = friendList;
     }
 
     public String getUsername() {
