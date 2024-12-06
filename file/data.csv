@@ -1,7 +1,8 @@
 username, password, friends
-huy,123,phu;toan
+huy,123,toan;phu
 phu,253,
 toan,ab12,
 son,zx,
-Long,mnbv,
+Long,mnbv,son;John
 John,900,
+Thanh,2032,

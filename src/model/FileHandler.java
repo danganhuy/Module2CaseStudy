@@ -26,6 +26,7 @@ public class FileHandler {
                 for (int i = 1; i < friends.size(); i++) {
                     writer.append(friends.get(i).getUsername()).append(INDEX_SEPERATOR);
                 }
+                writer.append(LINE_SEPARATOR);
             }
         } catch (Exception e) {
             e.printStackTrace();

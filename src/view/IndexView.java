@@ -1,13 +1,13 @@
 package view;
 
-import sun.rmi.runtime.Log;
-
 import java.util.Scanner;
 
-public class Index extends View {
-    public static void mainMenu() {
+public class IndexView extends View {
+    @Override
+    public View index() {
         Scanner sc = new Scanner(System.in);
 
+        System.out.println("{[(  Welcome " + "  )]}");
         System.out.println("=== Main Menu ===");
         System.out.println("1. FriendsList");
         System.out.println("2. Conversations");
@@ -18,13 +18,13 @@ public class Index extends View {
             System.out.print("Your choice: ");
             switch (sc.nextLine()) {
                 case "1":
-                    return;
+                    break;
                 case "2":
-                    return;
+                    break;
                 case "3":
-                    return;
+                    return new LoginView();
                 case "4":
-                    Login.login();
+                    return null;
                 default:
                     System.out.println("### Invalid option ###");
             }

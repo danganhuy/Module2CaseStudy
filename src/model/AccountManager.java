@@ -6,7 +6,8 @@ public class AccountManager {
     private static AccountManager instance;
     private List<Account> accounts;
 
-    private AccountManager() {}
+    private AccountManager() {
+    }
 
     public static void createInstance(List<Account> accounts) {
         instance = new AccountManager();
