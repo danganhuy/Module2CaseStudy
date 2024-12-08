@@ -11,6 +11,7 @@ public class FileHandler {
     private static final String ACCOUNT_FILE_HEADER = "username, password, friends";
     private static final String VALUE_SEPARATOR = ",";
     private static final String INDEX_SEPERATOR = ";";
+    private static final String EMPTY_LIST = "___";
     private static final String LINE_SEPARATOR = "\n";
 
     public static void saveAccounts() {
@@ -23,6 +24,9 @@ public class FileHandler {
                 writer.append(acc.getUsername()).append(VALUE_SEPARATOR);
                 writer.append(acc.getPassword()).append(VALUE_SEPARATOR);
                 List<Account> friends = acc.getFriendList().getFriends();
+                if (!friends.isEmpty()) {
+                    writer.append(EMPTY_LIST);
+                }
                 for (int i = 1; i < friends.size(); i++) {
                     writer.append(friends.get(i).getUsername()).append(INDEX_SEPERATOR);
                 }
@@ -40,7 +44,7 @@ public class FileHandler {
         }
     }
 
-    public static void loadAccounts() {
+    public static void loadData() {
         BufferedReader reader = null;
         try {
             List<Account> accounts = new ArrayList<>();
@@ -54,7 +58,7 @@ public class FileHandler {
                 String[] data = line.split(VALUE_SEPARATOR);
                 String username = data[0];
                 String password = data[1];
-                if (data.length > 2) {
+                if (!data[2].equals(EMPTY_LIST)) {
                     friendListList.add(data[2].split(INDEX_SEPERATOR));
                 } else {
                     friendListList.add(null);
@@ -75,14 +79,10 @@ public class FileHandler {
             }
 
             AccountManager.createInstance(accounts);
+            ConversationManager.createInstance(new ArrayList<>());
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static void createData() {
-//        AccountManager.createInstance(new ArrayList<>());
-        ConversationManager.createInstance(new ArrayList<>());
     }
 }

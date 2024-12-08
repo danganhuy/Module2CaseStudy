@@ -1,10 +1,7 @@
 package view;
 
 import controller.Validator;
-import model.Account;
-import model.AccountManager;
-import model.FileHandler;
-import model.FriendList;
+import model.*;
 
 import java.util.Scanner;
 
@@ -27,8 +24,10 @@ public class LoginView extends View {
             switch (sc.nextLine()) {
                 case "1":
                     login();
+                    break;
                 case "2":
                     register();
+                    break;
                 case "3":
                     return null;
                 default:
@@ -89,12 +88,15 @@ public class LoginView extends View {
         System.out.print("Enter your password: ");
         String password = sc.nextLine();
 
-        AccountManager.createAccount(new Account(username, password, new FriendList()));
+        AccountManager.createAccount(new Account(username, password));
         FileHandler.saveAccounts();
         System.out.println("Account created successfully!");
     }
 
     public static Account getCurrentUser() {
         return currentUser;
+    }
+    public static String getCurrentUserName() {
+        return LoginView.getCurrentUser().getUsername();
     }
 }

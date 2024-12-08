@@ -7,7 +7,7 @@ public class IndexView extends View {
     public View index() {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("{[(  Welcome " + "  )]}");
+        System.out.println("{[(  Welcome " + LoginView.getCurrentUserName() + "  )]}");
         System.out.println("=== Main Menu ===");
         System.out.println("1. FriendsList");
         System.out.println("2. Conversations");
@@ -18,7 +18,7 @@ public class IndexView extends View {
             System.out.print("Your choice: ");
             switch (sc.nextLine()) {
                 case "1":
-                    break;
+                    return new FriendListView();
                 case "2":
                     break;
                 case "3":

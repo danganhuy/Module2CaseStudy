@@ -5,8 +5,7 @@ import view.View;
 public class App extends Thread{
     public static void main(String[] args) {
         View view = new LoginView();
-        FileHandler.createData();
-        FileHandler.loadAccounts();
+        FileHandler.loadData();
 
         while (view != null) {
             view = view.index();
