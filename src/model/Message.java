@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Message {
+public class Message implements Serializable {
     private Account account;
     private String message;
     private final LocalDateTime sendDate;
@@ -38,7 +39,7 @@ public class Message {
         this.deleted = deleted;
     }
 
-    protected String printMessage(Account account) {
+    protected String printMessage() {
         return account.getUsername() + "[" + sendDate.toString() + "]: " +
                 (deleted ? "Message deleted by user" : message);
     }

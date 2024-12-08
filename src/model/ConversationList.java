@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConversationList {
+public class ConversationList implements Serializable {
     private List<Conversation> conversations;
     public ConversationList() {
         conversations = new ArrayList<Conversation>();
@@ -19,5 +20,13 @@ public class ConversationList {
     }
     public void removeConversation(Conversation conversation) {
         this.conversations.remove(conversation);
+    }
+    public Conversation findDirectChat(Account account) {
+        for (Conversation conversation : conversations) {
+            if (conversation instanceof DirectChat && conversation.userHere(account)) {
+                return conversation;
+            }
+        }
+        return null;
     }
 }

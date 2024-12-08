@@ -31,4 +31,16 @@ public abstract class Conversation implements Serializable {
 
     public abstract void sendMessage(String message, Account account);
     public abstract boolean userHere(Account account);
+
+    public String display() {
+        if (message.isEmpty()) {
+            return "*** No Messages ***";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (Message m : message) {
+            sb.append(m.printMessage()).append("\n");
+        }
+        return sb.toString();
+    }
 }

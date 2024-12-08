@@ -89,7 +89,8 @@ public class LoginView extends View {
         String password = sc.nextLine();
 
         AccountManager.createAccount(new Account(username, password));
-        FileHandler.saveAccounts();
+        FileHandler.saveDataDat();
+        FileHandler.saveData();
         System.out.println("Account created successfully!");
     }
 

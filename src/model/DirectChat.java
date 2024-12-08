@@ -1,9 +1,9 @@
 package model;
 
-public class DirectChat extends Conversation{
+public class DirectChat extends Conversation {
     private final Account[] accounts;
 
-    public DirectChat(int conversationId, Account user0, Account user1) {
+    public DirectChat(Account user0, Account user1) {
         super();
         accounts = new Account[] {user0, user1};
     }
