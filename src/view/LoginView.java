@@ -14,12 +14,12 @@ public class LoginView extends View {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("=== Sign in ===");
-        System.out.println("1. Log into your account");
-        System.out.println("2. Create new account");
-        System.out.println("3. Exit");
-
         while (currentUser == null) {
+            System.out.println("=== Sign in ===");
+            System.out.println("1. Log into your account");
+            System.out.println("2. Create new account");
+            System.out.println("3. Exit");
+
             System.out.print("Your choice: ");
             switch (sc.nextLine()) {
                 case "1":
@@ -31,7 +31,7 @@ public class LoginView extends View {
                 case "3":
                     return null;
                 default:
-                    System.out.println("### Invalid option ###");
+                    System.out.println("###### Invalid option ######");
             }
         }
         return new IndexView();

@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 public class FileHandler {
-    private static final String ACCOUNT_FILE_PATH = "file\\data.csv";
-    private static final String ACCOUNT_FILE_HEADER = "username, password, friends";
+    private static final String ACCOUNT_FILE_PATH = "file\\accountData.csv";
+    private static final String ACCOUNT_FILE_HEADER = "username,password,friends,conversations";
+    private static final String CONVERSATION_FILE_PATH = "file\\conversationData.csv";
+    private static final String CONVERSATION_FILE_HEADER = "type,id,accounts";
     private static final String VALUE_SEPARATOR = ",";
     private static final String INDEX_SEPERATOR = ";";
     private static final String EMPTY_LIST = "___";

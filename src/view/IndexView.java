@@ -7,14 +7,14 @@ public class IndexView extends View {
     public View index() {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("{[(  Welcome " + LoginView.getCurrentUserName() + "  )]}");
-        System.out.println("=== Main Menu ===");
-        System.out.println("1. FriendsList");
-        System.out.println("2. Conversations");
-        System.out.println("3. Log out");
-        System.out.println("4. Exit");
-
         while (true) {
+            System.out.println("{[(  Welcome " + LoginView.getCurrentUserName() + "  )]}");
+            System.out.println("=== Main Menu ===");
+            System.out.println("1. FriendsList");
+            System.out.println("2. Conversations");
+            System.out.println("3. Log out");
+            System.out.println("4. Exit");
+
             System.out.print("Your choice: ");
             switch (sc.nextLine()) {
                 case "1":
@@ -26,7 +26,7 @@ public class IndexView extends View {
                 case "4":
                     return null;
                 default:
-                    System.out.println("### Invalid option ###");
+                    System.out.println("###### Invalid option ######");
             }
         }
     }

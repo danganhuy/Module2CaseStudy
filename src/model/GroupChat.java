@@ -16,9 +16,11 @@ public class GroupChat extends Conversation{
     }
 
     private final List<Member> members;
+    private String groupName;
 
-    public GroupChat(int conversationId, List<Account> accounts, Account admin) {
+    public GroupChat(String groupName, List<Account> accounts, Account admin) {
         super();
+        this.groupName = groupName;
         this.members = new ArrayList<>();
         this.members.add(new Member(admin, true));
         for (Account account : accounts) {
@@ -33,6 +35,20 @@ public class GroupChat extends Conversation{
         }
         return userList;
     }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
+
 
     public void addUser(Account account) {
         members.add(new Member(account, false));

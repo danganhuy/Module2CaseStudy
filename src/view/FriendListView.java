@@ -11,15 +11,15 @@ public class FriendListView extends View {
     public View index() {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("{[(  Welcome " + LoginView.getCurrentUserName() + "  )]}");
-        System.out.println("=== Friend List ===");
-        System.out.println("1. Show friend list");
-        System.out.println("2. Add friend");
-        System.out.println("3. Remove friend");
-        System.out.println("4. Start conversation with a friend");
-        System.out.println("5. Exit");
-
         while (true) {
+            System.out.println("{[(  Welcome " + LoginView.getCurrentUserName() + "  )]}");
+            System.out.println("=== Friend List ===");
+            System.out.println("1. Show friend list");
+            System.out.println("2. Add friend");
+            System.out.println("3. Remove friend");
+            System.out.println("4. Start conversation with a friend");
+            System.out.println("5. Exit");
+
             System.out.print("Your choice: ");
             switch (sc.nextLine()) {
                 case "1":
@@ -36,7 +36,7 @@ public class FriendListView extends View {
                 case "5":
                     return null;
                 default:
-                    System.out.println("### Invalid option ###");
+                    System.out.println("###### Invalid option ######");
             }
         }
     }
