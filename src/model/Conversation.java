@@ -5,24 +5,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Conversation implements Serializable {
-    private String id;
-    private List<Message> message;
+    private final String id;
+    private List<Message> messages;
 
     protected Conversation() {
         this.id = ConversationManager.getNewId();
-        message = new ArrayList<Message>();
+        messages = new ArrayList<Message>();
     }
 
     public String getId() {
         return id;
     }
 
-    protected List<Message> getMessage() {
-        return message;
+    protected List<Message> getMessages() {
+        return messages;
     }
 
     protected void addMessage(Message message) {
-        this.message.add(message);
+        this.messages.add(message);
     }
 
     protected void deleteMessage(Message message) {
@@ -33,12 +33,12 @@ public abstract class Conversation implements Serializable {
     public abstract boolean userHere(Account account);
 
     public String display() {
-        if (message.isEmpty()) {
+        if (messages.isEmpty()) {
             return "*** No Messages ***";
         }
 
         StringBuilder sb = new StringBuilder();
-        for (Message m : message) {
+        for (Message m : messages) {
             sb.append(m.printMessage()).append("\n");
         }
         return sb.toString();
